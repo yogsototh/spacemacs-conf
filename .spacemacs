@@ -10,7 +10,9 @@
  ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load.
- dotspacemacs-configuration-layers '(git
+ dotspacemacs-configuration-layers '((git :variables
+                                          git-enable-github-support t
+                                          git-gutter-use-fringe t)
                                      clojure
                                      haskell
                                      (colors :variables colors-enable-nyan-cat-progress-bar t)
@@ -100,6 +102,12 @@
  startup."
   )
 
+(defun find-file-in-split ()
+  "Split the windows and start projectile find file"
+  (interactive)
+  (split-window-below-and-focus)
+  (projectile-find-file))
+
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
@@ -107,6 +115,7 @@ This function is called at the very end of Spacemacs initialization."
   (global-set-key (kbd "C-k") 'evil-window-up)
   (global-set-key (kbd "C-l") 'evil-window-right)
   (global-set-key (kbd "C-h") 'evil-window-left)
+  (evil-leader/set-key "oo" 'find-file-in-split)
   )
 
 ;; Custom variables
