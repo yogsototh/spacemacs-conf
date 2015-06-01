@@ -14,7 +14,8 @@
                                           git-enable-github-support t
                                           git-gutter-use-fringe t)
                                      clojure
-                                     shell
+                                     elm
+                                     (shell :variables shell-default-term-shell "/bin/zsh")
                                      (haskell :variables haskell-enable-hindent-style "chris-done")
                                      (colors :variables colors-enable-nyan-cat-progress-bar t)
                                      fasd

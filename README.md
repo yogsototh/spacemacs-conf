@@ -9,3 +9,4 @@ For example I use a lot the splited windows.
 You can navigate between them with `C-w h`, `C-w j`, `C-w k` and `C-w l`.
 I changed these key bindings by `C-h`, `C-j`, `C-k`, `C-l`.
 
+Furthermore there is an [`elm`](http://elm-lang.org) layer.
