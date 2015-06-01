@@ -14,7 +14,8 @@
                                           git-enable-github-support t
                                           git-gutter-use-fringe t)
                                      clojure
-                                     haskell
+                                     shell
+                                     (haskell :variables haskell-enable-hindent-style "chris-done")
                                      (colors :variables colors-enable-nyan-cat-progress-bar t)
                                      fasd
                                      markdown
@@ -100,6 +101,7 @@
 (defun dotspacemacs/init ()
   "User initialization for Spacemacs. This function is called at the very
  startup."
+  ; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
   )
 
 (defun find-file-in-split ()
