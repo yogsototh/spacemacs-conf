@@ -11,8 +11,9 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load.
  dotspacemacs-configuration-layers '((git :variables
-                                          git-enable-github-support t
-                                          git-gutter-use-fringe t)
+                                          git-enable-github-support t)
+                                     diff-hl
+                                     syntax-checking
                                      clojure
                                      elm
                                      (shell :variables shell-default-term-shell "/bin/zsh")
@@ -100,10 +101,9 @@
 ;; --------------------
 
 (defun dotspacemacs/init ()
-  "User initialization for Spacemacs. This function is called at the very
+ "User initialization for Spacemacs. This function is called at the very
  startup."
-  ; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-  )
+ (add-to-list 'exec-path "~/.local/bin"))
 
 (defun find-file-in-split ()
   "Split the windows and start projectile find file"
