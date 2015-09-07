@@ -11,8 +11,9 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load.
  dotspacemacs-configuration-layers '((git :variables
-                                          git-enable-github-support t
-                                          git-gutter-use-fringe t)
+                                          git-enable-github-support t)
+                                     diff-hl
+                                     syntax-checking
                                      clojure
                                      (shell :variables shell-default-term-shell "/bin/zsh")
                                      (haskell :variables
