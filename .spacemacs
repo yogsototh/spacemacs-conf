@@ -23,6 +23,7 @@
                                      (colors :variables colors-enable-nyan-cat-progress-bar t)
                                      fasd
                                      markdown
+                                     elm
                                      )
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '(ghc company-ghc)
@@ -255,7 +256,9 @@ This function is called at the very end of Spacemacs initialization."
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
    (quote
-    ((haskell-indent-spaces . 2)
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4)
+     (haskell-indent-spaces . 2)
      (haskell-process-args-ghci "ghci")
      (haskell-process-path-ghci . "stack")
      (haskell-process-type . stack-ghci)))))
