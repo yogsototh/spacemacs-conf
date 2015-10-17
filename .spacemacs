@@ -20,6 +20,7 @@
                                       haskell-enable-hindent-style "chris-done"
                                       haskell-enable-ghci-ng-support t
                                      )
+                                     shakespeare-mode
                                      (colors :variables colors-enable-nyan-cat-progress-bar t)
                                      fasd
                                      markdown
@@ -234,6 +235,8 @@ This function is called at the very end of Spacemacs initialization."
   (global-set-key (kbd "C-l") 'evil-window-right)
   (global-set-key (kbd "C-h") 'evil-window-left)
   (evil-leader/set-key "oo" 'find-file-in-split)
+  (setq mac-option-modifier 'none)
+  (setq mac-command-modifier 'meta)
   )
 
 ;; Custom variables
