@@ -10,22 +10,25 @@
  ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load.
- dotspacemacs-configuration-layers '((git :variables
-                                          git-enable-github-support t)
-                                     diff-hl
-                                     syntax-checking
-                                     clojure
-                                     (shell :variables shell-default-term-shell "/bin/zsh")
-                                     (haskell :variables
-                                      haskell-enable-hindent-style "chris-done"
-                                      haskell-enable-ghci-ng-support t
-                                     )
-                                     shakespeare-mode
-                                     (colors :variables colors-enable-nyan-cat-progress-bar t)
-                                     fasd
-                                     markdown
-                                     elm
-                                     )
+ dotspacemacs-configuration-layers
+ '(auto-completion
+   (git :variables
+        git-enable-github-support t)
+   diff-hl
+   syntax-checking
+   clojure
+   (shell :variables shell-default-term-shell "/bin/zsh")
+   (haskell :variables
+            haskell-enable-hindent-style "chris-done"
+            haskell-enable-ghci-ng-support t
+            )
+   shakespeare-mode
+   (colors :variables colors-enable-nyan-cat-progress-bar t)
+   fasd
+   markdown
+   elm
+   emacs-lisp
+   )
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '(ghc company-ghc)
 )
@@ -237,6 +240,7 @@ This function is called at the very end of Spacemacs initialization."
   (evil-leader/set-key "oo" 'find-file-in-split)
   (setq mac-option-modifier 'none)
   (setq mac-command-modifier 'meta)
+  (server-start)
   )
 
 ;; Custom variables
