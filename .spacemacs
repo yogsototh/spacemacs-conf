@@ -19,7 +19,6 @@ values."
    '(auto-completion
      (git :variables
           git-enable-github-support t)
-     diff-hl
      deft
      syntax-checking
      clojure
@@ -28,7 +27,6 @@ values."
               haskell-enable-hindent-style "chris-done"
               haskell-enable-ghci-ng-support t
               )
-     shakespeare-mode
      (colors :variables colors-enable-nyan-cat-progress-bar t)
      fasd
      markdown
@@ -238,7 +236,8 @@ This function is called at the very startup of Spacemacs initialization
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  (add-to-list 'exec-path "~/.local/bin"))
+  ;; FOR STACK ;; (add-to-list 'exec-path "~/.local/bin")
+  )
 
 ;; -- Y
 (defun find-file-in-split ()
@@ -279,14 +278,11 @@ layers configuration. You are free to put any user code."
  '(safe-local-variable-values
    (quote
     ((haskell-process-use-ghci . t)
-     (haskell-indent-spaces . 4)
-     (haskell-indent-spaces . 2)
-     (haskell-process-args-ghci "ghci")
-     (haskell-process-path-ghci . "stack")
-     (haskell-process-type . stack-ghci)))))
+     (haskell-indent-spaces . 4)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
