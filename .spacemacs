@@ -22,18 +22,19 @@ values."
      deft
      syntax-checking
      clojure
-     (shell :variables shell-default-term-shell "/bin/zsh")
+     (shell :variables
+            shell-default-term-shell "/bin/zsh")
      (haskell :variables
               haskell-enable-hindent-style "chris-done"
-              haskell-enable-ghci-ng-support t
-              )
-     (colors :variables colors-enable-nyan-cat-progress-bar t)
+              haskell-enable-ghci-ng-support t)
+     shakespeare-mode
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar t)
      fasd
      markdown
      elm
      emacs-lisp
-     version-control
-     )
+     version-control)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -45,9 +46,6 @@ values."
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
    dotspacemacs-delete-orphan-packages t))
-
-
-
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -274,6 +272,9 @@ layers configuration. You are free to put any user code."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(custom-safe-themes
+   (quote
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
    (quote
