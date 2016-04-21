@@ -1,6 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+(load "~/.spacemacs-secrets.el.gpg")
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -19,6 +20,7 @@ values."
    '(auto-completion
      (git :variables
           git-enable-github-support t)
+     github
      deft
      syntax-checking
      clojure
@@ -34,7 +36,10 @@ values."
      markdown
      elm
      emacs-lisp
-     version-control)
+     version-control
+     (wakatime :variables
+               wakatime-api-key wakatime-token
+               wakatime-cli-path "/usr/local/bin/wakatime"))
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
