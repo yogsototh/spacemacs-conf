@@ -1,5 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
+
 ;; It must be stored in your home directory.
 (load "~/.spacemacs-secrets.el.gpg")
 
@@ -17,25 +18,29 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(auto-completion
+   '((auto-completion :variables
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t)
+     syntax-checking
+     ;; intero
      (git :variables
           git-enable-github-support t)
      github
      deft
-     syntax-checking
+     org
      clojure
+     slack
+     haskell
      (shell :variables
             shell-default-term-shell "/bin/zsh")
-     (haskell :variables
-              haskell-enable-hindent-style "chris-done"
-              haskell-enable-ghci-ng-support t)
-     (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
+     (colors :variables)
      fasd
      markdown
      elm
      emacs-lisp
      version-control
+     themes-megapack
+     pinentry
      (wakatime :variables
                wakatime-api-key wakatime-token
                wakatime-cli-path "/usr/local/bin/wakatime"))
@@ -98,11 +103,11 @@ This function is called at the very startup of Spacemacs initialization
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(solarized-dark
                          spacemacs-dark
+                         sanityinc-solarized-dark
+                         sanityinc-tomorrow-eighties
                          zenburn
                          solarized-light
-                         spacemacs-light
-                         leuven
-                         monokai)
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -238,7 +243,6 @@ This function is called at the very startup of Spacemacs initialization
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  ;; FOR STACK ;; (add-to-list 'exec-path "~/.local/bin")
   )
 
 ;; -- Y
@@ -269,8 +273,18 @@ layers configuration. You are free to put any user code."
   (setq mac-command-modifier 'meta)
   ;; Wakatime
   (global-wakatime-mode t)
-  ;; (server-start)
-  )
+  ;; -- ;; org-mode clojure literate programming
+  ;; -- (org-babel-do-load-languages
+  ;; --  'org-babel-do-load-languages
+  ;; --  '((emacs-lisp . t)
+  ;; --    (clojure . t))
+  ;; --  (setq org-src-fontify-natively t)
+  ;; --  (setq org-src-preserve-indentation t))
+  (slack-register-team :name "Batiatus"
+                       :default t
+                       :client-id slack-client-id
+                       :client-secret slack-client-secret
+                       :token slack-token))
 
 ;; Do not write anything in this section. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -295,8 +309,8 @@ layers configuration. You are free to put any user code."
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
- '(fci-rule-color "#073642" t)
+    ("40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
+ '(fci-rule-color "#073642")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
    (--map
@@ -368,5 +382,6 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
