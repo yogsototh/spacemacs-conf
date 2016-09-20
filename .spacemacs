@@ -40,7 +40,7 @@ values."
      emacs-lisp
      version-control
      themes-megapack
-     pinentry
+     jabber
      (wakatime :variables
                wakatime-api-key wakatime-token
                wakatime-cli-path "/usr/local/bin/wakatime"))
@@ -101,10 +101,10 @@ This function is called at the very startup of Spacemacs initialization
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-dark
-                         spacemacs-dark
-                         sanityinc-solarized-dark
+   dotspacemacs-themes '(sanityinc-solarized-dark
                          sanityinc-tomorrow-eighties
+                         solarized-dark
+                         spacemacs-dark
                          zenburn
                          solarized-light
                          spacemacs-light)
@@ -243,7 +243,9 @@ This function is called at the very startup of Spacemacs initialization
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  )
+  (setq ssl-program-name "gnutls-cli"
+        ssl-program-arguments '("--insecure" "-p" service host)
+        ssl-certificate-verification-policy 1))
 
 ;; -- Y
 (defun find-file-in-split ()
@@ -251,6 +253,20 @@ in `dotspacemacs/user-config'."
   (interactive)
   (split-window-below-and-focus)
   (projectile-find-file))
+
+(defvar hipchat-room-list '(("integration" . "1_integration")))
+(defvar hipchat-number "")
+(defvar hipchat-nickname "Yann Esposito")
+(defun hipchat-join ()
+  (interactive)
+  (let* ((room-list (sort (mapcar 'car hipchat-room-list) 'string-lessp))
+         (selected-room (completing-read "Room name: " room-list))
+         (hipchat-mapping (cdr (assoc selected-room hipchat-room-list))))
+    (jabber-groupchat-join
+     (jabber-read-account)
+     (concat hipchat-number "" hipchat-mapping "@conf.btf.hipchat.com")
+     hipchat-nickname
+     t)))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -273,18 +289,15 @@ layers configuration. You are free to put any user code."
   (setq mac-command-modifier 'meta)
   ;; Wakatime
   (global-wakatime-mode t)
-  ;; -- ;; org-mode clojure literate programming
-  ;; -- (org-babel-do-load-languages
-  ;; --  'org-babel-do-load-languages
-  ;; --  '((emacs-lisp . t)
-  ;; --    (clojure . t))
-  ;; --  (setq org-src-fontify-natively t)
-  ;; --  (setq org-src-preserve-indentation t))
+  ;; Slack
   (slack-register-team :name "Batiatus"
                        :default t
                        :client-id slack-client-id
                        :client-secret slack-client-secret
-                       :token slack-token))
+                       :token slack-token)
+  (spacemacs/set-leader-keys
+    "aCg" 'slack-group-select)
+  (evil-leader/set-key "oh" 'hipchat-join))
 
 ;; Do not write anything in this section. This is where Emacs will
 ;; auto-generate custom variable definitions.
