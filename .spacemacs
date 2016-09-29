@@ -24,7 +24,7 @@ values."
           git-enable-github-support t)
      github
      deft
-     (org :variables org-enable-github-support)
+     (org :variables org-enable-github-support t)
      clojure
      slack
      haskell
