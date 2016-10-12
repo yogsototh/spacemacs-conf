@@ -19,6 +19,7 @@ values."
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
      syntax-checking
+     better-default
      ;; intero
      (git :variables
           git-enable-github-support t)
@@ -288,6 +289,8 @@ layers configuration. You are free to put any user code."
                           '(text-mode-hook))
   (setq mac-option-modifier 'none)
   (setq mac-command-modifier 'meta)
+  ;; Colortheme fix in terminal
+  (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
   ;; Clojure
   (evil-leader/set-key "op" 'cider-pprint-eval-last-sexp)
   ;; Wakatime
