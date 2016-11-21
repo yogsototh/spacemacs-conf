@@ -15,11 +15,15 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((auto-completion :variables
+   '(
+     rust
+     javascript
+     yaml
+     (auto-completion :variables
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
      syntax-checking
-     better-default
+     better-defaults
      ;; intero
      (git :variables
           git-enable-github-support t)
@@ -28,7 +32,8 @@ values."
      (org :variables org-enable-github-support t)
      clojure
      slack
-     haskell
+     (haskell
+      :variables haskell-completion-backend 'intero)
      (shell :variables
             shell-default-term-shell "/bin/zsh")
      (colors :variables)
@@ -40,8 +45,9 @@ values."
      themes-megapack
      jabber
      (wakatime :variables
-               wakatime-api-key wakatime-token
-               wakatime-cli-path "/usr/local/bin/wakatime"))
+               wakatime-cli-path "/usr/local/bin/wakatime"
+               wakatime-python-path "/usr/local/bin/python")
+     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -393,4 +399,4 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background nil :family "Menlo" :foundry "nil" :slant normal :weight normal :height 120 :width normal)))))
