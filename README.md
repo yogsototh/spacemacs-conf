@@ -1,3 +1,5 @@
+*This repository is deprecated in favor of dotfiles*
+
 # Spacemacs config
 
 This spacemacs config file try to close the gap between
