@@ -16,6 +16,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     vimscript
+     idris
+     html
      rust
      javascript
      yaml
@@ -285,6 +288,12 @@ layers configuration. You are free to put any user code."
   (global-set-key (kbd "C-l") 'evil-window-right)
   (global-set-key (kbd "C-h") 'evil-window-left)
   (evil-leader/set-key "oo" 'find-file-in-split)
+  ;; SHOW TRAILING WHITESPACE
+  (require 'whitespace)
+  (setq-default whitespace-style '(face trailing))
+  (setq-default whitespace-line-column 80)
+  (global-whitespace-mode 1)
+
   (setq fci-rule-width 1)
   (setq fci-rule-color "#073642")
   (spacemacs/add-to-hooks 'spacemacs/toggle-fill-column-indicator-on
@@ -320,6 +329,8 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#657b83"])
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
@@ -327,7 +338,7 @@ layers configuration. You are free to put any user code."
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "66132890ee1f884b4f8e901f0c61c5ed078809626a547dbefbb201f900d03fd8" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(evil-want-Y-yank-to-eol t)
  '(fci-rule-color "#073642")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
@@ -366,6 +377,7 @@ layers configuration. You are free to put any user code."
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(vc-annotate-background nil)
+ '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
    (quote
     ((20 . "#dc322f")
